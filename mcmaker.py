@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 
-import socket
-import struct
-import sys
+from scapy.all import *
 
-maddr = ("239.0.0.1", 9001)
-pkts = 9
+packetcount = 99
+packets = PacketList()
 
 if __name__ == "__main__":
-    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
-        sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, struct.pack("b",1))
-        for i in range(pkts):
-            sock.sendto(f"{i:08d}".encode(), maddr)
+
+    # generate packets into a pcap file, sanitise source MAC/IP
+    for i in range(1,packetcount+1):
+        payload = f"{i:08d}".encode()
+        packet = Ether(src="aa:aa:aa:bb:bb:bb")/IP(src="10.0.0.1",dst="239.0.0.1")/UDP(sport=65535,dport=9001)/Raw(load=payload)
+        packets.append(packet)
+
+    wrpcap("mcpackets.pcap", packets)
 
