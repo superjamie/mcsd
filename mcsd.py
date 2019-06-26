@@ -13,8 +13,8 @@ if __name__ == "__main__":
     parser.add_argument("filename", help="pcap filename to read")
     parser.add_argument("-s", "--source", help="filter on source IP address")
     parser.add_argument("-d", "--dest"  , help="filter on destination IP address")
-    parser.add_argument("-S", "--sport" , help="filter on source port number", type=int, choices=range(1,65535))
-    parser.add_argument("-D", "--dport" , help="filter on destination port number", type=int, choices=range(1,65535))
+    parser.add_argument("-S", "--sport" , help="filter on source port number", type=int)
+    parser.add_argument("-D", "--dport" , help="filter on destination port number", type=int)
     parser.add_argument("-o", "--offset", help="offset into packet to start reading", default=0, type=int)
     parser.add_argument("-l", "--length", help="length of characters to read", default=8, type=int)
     parser.add_argument("-r", "--raw"   , help="raw mode. only print payload data", action="store_true")
@@ -40,6 +40,8 @@ if __name__ == "__main__":
         except ValueError:
             print("ERROR - Not a valid IP address:", args.dest)
             exit(1)
+
+    ## TODO: validate source ports
 
     # filter
     for packet in pcap_packets:
