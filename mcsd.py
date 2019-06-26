@@ -58,6 +58,7 @@ if __name__ == "__main__":
                 continue
             filt_packets.append(packet)
 
+    # TODO: print src/dest IP/port in non-raw mode
     # print header
     if (args.raw != True) and (len(filt_packets) > 0):
         print("{:10s} {:s}".format("frame no", "payload"))
