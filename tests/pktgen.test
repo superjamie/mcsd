@@ -1,8 +1,0 @@
-#!/bin/bash
-
-EXPECTED=$(basename $0 .test).txt
-
-./generator.py
-
-tshark -nr mcpackets.pcap -T fields -e frame.number -e ip.src -e ip.dst -e ip.proto -e udp.srcport -e udp.dstport -e udp.length | diff - "$EXPECTED"
-
