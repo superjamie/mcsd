@@ -30,29 +30,37 @@ optional arguments:
   -r, --raw             raw mode. only print payload data
 ~~~
 
+## Example
+
+~~~
+$ ./mcsd.py mcpackets.pcap 
+frame no   payload
+         1 00000001
+         2 00000002
+         3 00000003
+         4 00000004
+         5 00000005
+         6 00000006
+         7 00000007
+         8 00000008
+         9 00000009
+        10 00000010
+        11 00000011
+        12 00000012
+        13 00000013
+        14 00000014
+        15 00000015
+        16 00000016
+        17 00000017
+        18 00000018
+        19 00000019
+        20 00000020
+~~~
+
 ## Requirements
 
 * Python 3 (tested on v3.6.8)
 * scapy (tested on v2.4.2)
-
-## Features
-
-* Takes pcap filename as argument
-* Checks if packet is multicast
-* Checks if UDP payload exists
-* Prints packet number and a fixed substring of UDP payload as text
-* "Raw mode" which just prints the packet payload substring
-
-## Todo
-
-* Filter on source/dest addr/port arguments
-* Take traffic offset and lenth arguments
-
-## Not Todo
-
-* Any processing of payload data. This tool is used to extract the payload
-  sequence number as text only. Process the payload with text manipulation
-  tools. This fits with Unix Philosophy of "do one thing and do it well".
 
 ## Author
 
@@ -61,8 +69,4 @@ Jamie Bainbridge - jamie.bainbridge@gmail.com
 ## License
 
 GPLv3 - https://www.gnu.org/licenses/gpl-3.0.en.html
-
-## Testing
-
-* In `tests` directory
 
