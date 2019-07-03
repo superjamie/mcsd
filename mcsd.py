@@ -58,11 +58,6 @@ if __name__ == "__main__":
                 continue
             filt_packets.append(packet)
 
-    # TODO: print src/dest IP/port in non-raw mode
-    # print header
-    if (args.raw != True) and (len(filt_packets) > 0):
-        print("{:10s} {:s}".format("frame no", "payload"))
-
     # process
     if (args.offset):
         offset = args.offset
@@ -74,13 +69,18 @@ if __name__ == "__main__":
     else:
         length = 8
 
-    for packet in filt_packets:
-        payload = packet[Raw].load.decode("utf-8")[offset:offset+length]
-        if (args.raw != True):
-            framenumber = pcap_packets.index(packet)+1
-            print("{:10d} {:s}".format(framenumber, payload))
-        else:
-            print(payload)
+    if (len(filt_packets) > 0):
+        for packet in filt_packets:
+            payload = packet[Raw].load.decode("utf-8")[offset:offset+length]
+            if (args.raw != True):
+                framenumber = pcap_packets.index(packet)+1
+                srcip = packet[IP].src
+                dstip = packet[IP].dst
+                sport = packet[UDP].sport
+                dport = packet[UDP].dport
+                print("{:>10d} {:>15s} → {:<15s} {:>5d} → {:<5d} {:s}".format(framenumber, srcip, dstip, sport, dport, payload))
+            else:
+                print(payload)
 
 # vim: ft=python
 
