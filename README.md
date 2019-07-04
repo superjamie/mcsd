@@ -96,7 +96,7 @@ $ mcsd.py -D 9999 mcpackets.pcap
         20        10.0.0.2 → 239.0.0.2        1111 → 9999  00000020
 ~~~
 
-Raw mode, just displaying payload of the above:
+Raw mode, just displaying payload:
 
 ~~~
 $ mcsd.py -D 9999 -r mcpackets.pcap 
@@ -117,6 +117,16 @@ $ mcsd.py -D 9999 -r mcpackets.pcap
 * Python 3 (tested on v3.6.8)
 * scapy (tested on v2.4.2)
 
+## Installation
+
+Put [mcsd.py](https://raw.githubusercontent.com/superjamie/mcsd/master/mcsd.py) somewhere in `$PATH`, eg:
+
+~~~
+mkdir -p ~/bin
+wget -O ~/bin/mcsd.py https://raw.githubusercontent.com/superjamie/mcsd/master/mcsd.py
+chmod +x ~/bin/mcsd.py
+~~~
+
 ## Author
 
 Jamie Bainbridge - jamie.bainbridge@gmail.com
@@ -124,4 +134,3 @@ Jamie Bainbridge - jamie.bainbridge@gmail.com
 ## License
 
 GPLv3 - https://www.gnu.org/licenses/gpl-3.0.en.html
-
