@@ -112,6 +112,22 @@ $ mcsd.py -D 9999 -r mcpackets.pcap
 00000020
 ~~~
 
+Reading further ahead into the packet:
+
+~~~
+$ mcsd.py -D 9999 -r -o 4 -l 4 mcpackets.pcap 
+0002
+0004
+0006
+0008
+0010
+0012
+0014
+0016
+0018
+0020
+~~~
+
 ## Requirements
 
 * Python 3 (tested on v3.6.8)
