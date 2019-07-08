@@ -1,0 +1,6 @@
+#!/bin/bash
+
+EXPECTED=$(basename $0 .test).txt
+
+../mcsd.py -s 192.168.0.256 mcpackets.pcap | diff - "$EXPECTED"
+

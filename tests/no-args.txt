@@ -1,0 +1,4 @@
+usage: mcsd.py [-h] [-s SOURCE] [-d DEST] [-S SPORT] [-D DPORT] [-o OFFSET]
+               [-l LENGTH] [-r]
+               filename
+mcsd.py: error: the following arguments are required: filename

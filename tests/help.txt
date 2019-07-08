@@ -1,0 +1,21 @@
+usage: mcsd.py [-h] [-s SOURCE] [-d DEST] [-S SPORT] [-D DPORT] [-o OFFSET]
+               [-l LENGTH] [-r]
+               filename
+
+positional arguments:
+  filename              pcap filename to read
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SOURCE, --source SOURCE
+                        filter on source IP address
+  -d DEST, --dest DEST  filter on destination IP address
+  -S SPORT, --sport SPORT
+                        filter on source port number
+  -D DPORT, --dport DPORT
+                        filter on destination port number
+  -o OFFSET, --offset OFFSET
+                        offset into packet to start reading
+  -l LENGTH, --length LENGTH
+                        length of characters to read
+  -r, --raw             raw mode. only print payload data

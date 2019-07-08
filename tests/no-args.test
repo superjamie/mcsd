@@ -1,0 +1,6 @@
+#!/bin/bash
+
+EXPECTED=$(basename $0 .test).txt
+
+../mcsd.py 2>&1 >/dev/null | diff - "$EXPECTED"
+

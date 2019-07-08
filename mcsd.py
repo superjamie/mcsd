@@ -24,24 +24,35 @@ if __name__ == "__main__":
     try:
         pcap_packets = rdpcap(args.filename)
     except FileNotFoundError:
-        print("ERROR - File not found:", filename)
+        print("ERROR - File not found:", args.filename)
+        exit(1)
+    except PermissionError:
+        print("ERROR - Permission denied:", args.filename)
         exit(1)
 
-    if (args.source):
+    if (args.source is not None):
         try:
             ipaddress.ip_address(args.source)
         except ValueError:
-            print("ERROR - Not a valid IP address:", args.source)
+            print("ERROR - Not a valid source IP address:", args.source)
             exit(1)
 
-    if (args.dest):
+    if (args.dest is not None):
         try:
             ipaddress.ip_address(args.dest)
         except ValueError:
-            print("ERROR - Not a valid IP address:", args.dest)
+            print("ERROR - Not a valid destination IP address:", args.dest)
             exit(1)
 
-    ## TODO: validate source ports
+    if (args.sport is not None):
+        if (args.sport < 1) or (args.sport > 65535):
+            print("ERROR - Not a valid source port number:", args.sport)
+            exit(1)
+
+    if (args.dport is not None):
+        if (args.dport < 1) or (args.dport > 65535):
+            print("ERROR - Not a valid destination port number:", args.dport)
+            exit(1)
 
     # filter
     for packet in pcap_packets:
@@ -59,12 +70,12 @@ if __name__ == "__main__":
             filt_packets.append(packet)
 
     # process
-    if (args.offset):
+    if (args.offset is not None):
         offset = args.offset
     else:
         offset = 0
 
-    if (args.length):
+    if (args.length is not None):
         length = args.length
     else:
         length = 8
