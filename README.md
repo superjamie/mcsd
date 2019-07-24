@@ -1,4 +1,4 @@
-# Multicast Sequence Number Decoder
+# Multicast Sequence Decoder
 
 A scapy script for pulling the sequence number out of a UDP multicast
 packet payload. Used for troubleshooting packet captures of
