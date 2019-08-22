@@ -128,6 +128,30 @@ $ mcsd.py -D 9999 -r -o 4 -l 4 mcpackets.pcap
 0020
 ~~~
 
+## Analysis
+
+Text processing tools can be used to iterate over printed sequence numbers and identify missing data.
+
+The exact processing depends on the format of the packet data.
+
+An example using `awk` to find missing sequence numbers which don't increase by 1, starting at 1, using the above sample data:
+
+~~~
+$ mcsd.py -d 239.0.0.1 mcpackets.pcap | awk '$NF!=p+1{print p+1"-"$NF-1}{p=$NF}'
+1-1
+3-3
+5-5
+7-7
+9-9
+11-11
+13-13
+15-15
+17-17
+19-19
+~~~
+
+This output describes that we are missing sequence number 1, 3, 5, and so on.
+
 ## Requirements
 
 * Python 3 (tested on v3.6.8)
