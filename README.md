@@ -137,7 +137,7 @@ The exact processing depends on the format of the packet data.
 An example using `awk` to find missing sequence numbers which don't increase by 1, starting at 1, using the above sample data:
 
 ~~~
-$ mcsd.py -d 239.0.0.1 mcpackets.pcap | awk '$NF!=p+1{print p+1"-"$NF-1}{p=$NF}'
+$ mcsd.py -D 9999 mcpackets.pcap | awk '$NF!=p+1{print p+1"-"$NF-1}{p=$NF}'
 1-1
 3-3
 5-5
